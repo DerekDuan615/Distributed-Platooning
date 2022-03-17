@@ -98,6 +98,8 @@ class NaivePlatoon:
         self.calculate_ite_state()
         while self.ite_l < self.ite_max_l and not self.dual_stop:
             # print(f"ite_lambda:{self.ite_l}")
+            # self.ite_u = 0                         # edited by D.Duan
+            # self.calculate_ite_state()             # edited by D.Duan
             while self.ite_u < self.ite_max_u - 1 and not self.primal_stop:
                 # print(f"ite_u:{self.ite_u}")
                 self.compute_primal()
@@ -109,7 +111,7 @@ class NaivePlatoon:
         self.dual_idx = self.ite_l -1
         self.update_state(k)
 
-    def compute_primal(self):  # iteration attack肯定是在这里加，并且是在box constraint之前加
+    def compute_primal(self):  
         """compute and store the primal update for the distributed optimization algorithm"""
         self.ite_u += 1
         self.compute_gradient()
